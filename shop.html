@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="website icon" type="png" href="img/shop.svg">
+    <link rel="stylesheet" href="CSS/bootsrap3.3.5.mini.css">
+    <link rel="stylesheet" href="AOS (Animate On Scroll)/aos.css">
+
+    <link rel="stylesheet" href="CSS/swiper-slide.css">
+    <link rel="stylesheet" href="CSS/swiper-bundle.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body{
+        background-color: #ccc;
+    }
+    .btn-colorful {
+        border: none;
+        width: 120px;
+        padding: 10px;
+        outline: none;
+        color:
+            rgb(0, 0, 0);
+        font-style: 1.2em;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+        background: none;
+        text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.45);
+    }
+
+    .btn-colorful:before,
+    .btn-colorful:after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 10em;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        width: 105%;
+        height: 105%;
+        content: "";
+        z-index: -2;
+        background-size: 400% 400%;
+        background: linear-gradient(150deg,
+                rgb(64, 231, 8),
+                rgb(6, 5, 5));
+    }
+
+    .btn-colorful:before {
+        -webkit-filter: blur(7px);
+        filter: blur(7px);
+        -webkit-transition: all 0.25s ease;
+        transition: all 0.25s ease;
+        -webkit-animation: pulse 10s infinite ease;
+        animation: pulse 10s infinite ease;
+    }
+
+    .btn-colorful:after {
+        -webkit-filter: blur(0.3px);
+        filter: blur(0.3px);
+    }
+
+    .btn-colorful:hover:before {
+        width: 115%;
+        height: 115%;
+    }
+
+
+    .navbar2 a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        padding: 15px 20px;
+        transition: 0.7s;
+    }
+
+    li a:hover:not(.active) {
+        -webkit-text-fill-color: rgb(64, 231, 8);
+        ;
+    }
+
+    /* Simple hover effect */
+    .navbar2 a::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 3px;
+        border-radius: 50px;
+        background: rgb(64, 231, 8);
+        ;
+        transition: width .7s;
+    }
+
+    .navbar2 a:hover::after {
+        width: 100%;
+        transition: width .7s;
+    }
+
+    .a {
+        color: inherit !important;
+        /* Inherits the parent element's color */
+        text-decoration: none !important;
+        /* Removes the underline */
+    }
+
+    .header {
+        display: flex;
+        justify-content: right;
+        padding: 10px;
+        background-color: #333;
+        color: white;
+        width: 30px;
+    }
+
+    .header a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    .products-container {
+        display: flex;
+        justify-content: space-between;
+        padding: -40px;
+        margin: 50px;
+    }
+
+    .product-category {
+        width: 30%;
+    }
+
+    .category-title {
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-align: center;
+        font-size: 18px;
+        color: #333;
+    }
+
+    .product {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .product img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        margin-right: 10px;
+    }
+
+    .product-details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .product-name {
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: #555;
+    }
+
+    .product-price {
+        font-size: 16px;
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+    }
+
+    .product-actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .product-actions button {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .product-actions button:hover {
+        color: #ffffff;
+    }
+</style>
+
+<body>
+    <nav class="nav navbar-inverse navbar-fixed-top"
+        style="padding: 20px; background: linear-gradient(to bottom,rgba(0, 0, 0, 0.62),rgba(0, 0, 0, 0.62),rgba(0, 0, 0, 0.62),rgba(0, 0, 0, 0.62),rgb(64, 231, 8));">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" style="color:rgb(64, 231, 8); font-size: 50px;" href="#"><b> <img
+                            src="img/logo.svg" width="
+                50px" height="50px" alt=""><b style="font-size:60px;"><b>GB Express</b></a>
+            </div>
+
+
+            <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar2">
+                    <li><a href="home.html" style="color: #ffffff; font-size:20px;"><b>Home</b><span
+                                class="sr-only">(current)</span></a></li>
+                    <li><a href="about.html" style="color:  #ffffff; font-size:20px;"><b>About</b></a>
+                    <li><a class="active" href="shop.html"
+                            style="color:rgb(64, 231, 8); font-size:20px;"><b>Shop</b></a>
+
+                        <!-- <div id="theme-toggle">
+                        <img id="theme-button" src="IMG/mdi--theme-light-dark.svg" alt="Theme Icon">
+                    </div> -->
+                    </li>
+                </ul>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid
+
+    position: relative; top:-130px; -->
+    </nav>
+
+    <!-- <div class="header" style="margin-top: 300px;">
+        <a onclick="showCart()">View Cart (<span id="cart-count">0</span>)</a>
+    </div> -->
+
+    <div style=" margin-top: 100px; text-align: end; width: 231px; margin-left: 75%;" class="navbar-fixed-top">
+        <p style="font-size: 30px;  color: #ffffff; border-radius: 10% 50% 10% 50% / 50% 10% 50% 10%;"
+            class="btn-success"><a class="a" href="cart.html">🛒View Cart (<span id="cart-count">0</span>)</a></p>
+    </div>
+
+    <section id="look-for" class="py-5 mt-5" style="margin-top: 150px;">
+        <div class="">
+            <div class="d-flex justify-content-between my-4">
+                <p class="text-secondary" style="text-align: center;">Our Sponsors</p>
+            </div>
+
+            <div class="clients-slider swiper mt-3">
+                <div class="swiper-wrapper align-items-center">
+                    <div class="swiper-slide">
+                        <img src="img/salomon.png" class="img-fluid rounded-circle mb-3" alt="">
+                        <p class="text-center" style="font-size: 18px; margin-left: -20px;">Salomon</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/aon.png" class="img-fluid rounded-circle mb-3" alt="">
+                        <p class="text-center" style="font-size: 18px; margin-left: 20px;">AON</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/adidas.png" class="img-fluid rounded-circle mb-3" alt="">
+                        <p class="text-center" style="font-size: 18px; margin-left: -40px;">Adidas</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/coke.png" class="img-fluid rounded-circle mb-3" alt="">
+                        <p class="text-center" style="font-size: 18px; margin-left: -40px;">Coca-Cola</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/paypal.png" class="img-fluid rounded-circle mb-3" alt="">
+                        <p class="text-center" style="font-size: 18px; margin-left: -40px;">PayPal</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/spar.png" class="img-fluid rounded-circle mb-3" alt="">
+                        <p class="text-center" style="font-size: 18px; margin-left: -60px;">Spar</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/pepsi.png" class="img-fluid rounded-circle mb-3" alt="">
+                        <p class="text-center" style="font-size: 18px; margin-left: -40px;">Pepsi</p>
+                    </div>
+                </div><br>
+                <div class="swiper-pagination"></div>
+            </div>
+            </div>
+            <hr class="mt-5">
+        </div>
+    </section>
+
+
+    <div class="products-container">
+        <!-- New Arrival Section -->
+        <div class="product-category">
+            <div class="product">
+                <img src="img/mac monitor.jpg" alt="Product Image">
+                <div class="product-details">
+                    <div class="product-name" style="font-size: 20px;">Macbook Monitor</div>
+                    <div class="product-price">₦560,000.00</div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Macbook Monitor', 560000.00)" style="font-size: 18px;"
+                            class="bg-success">🛒 Add to
+                            Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more products similarly -->
+        </div>
+
+        <!-- On Sale Section -->
+        <div class="product-category">
+            <div class="product">
+                <img src="img/iphone 12.jpg" alt="Product Image">
+                <div class="product-details">
+                    <div class="product-name" style="font-size: 20px;">Iphone 15 Pro</div>
+                    <div class="product-price">₦178,000.00</div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Iphone 15 Pro', 178000.00)" style="font-size: 18px;"
+                            class="bg-success">🛒 Add to
+                            Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more products similarly -->
+        </div>
+
+        <!-- Top Rated Section -->
+        <div class="product-category">
+            <div class="product">
+                <img src="img/iron.jpg" alt="Product Image">
+                <div class="product-details">
+                    <div class="product-name" style="font-size: 20px;">Electric Iron</div>
+                    <div class="product-price">₦ 8,000.00</div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Electric Iron', 8000.00)" style="font-size: 18px;"
+                            class="bg-success">🛒 Add to
+                            Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more products similarly -->
+        </div>
+    </div>
+
+    <div class="products-container">
+        <!-- New Arrival Section -->
+        <div class="product-category">
+            <div class="product">
+                <img src="img/airpods.jpg" alt="Product Image">
+                <div class="product-details">
+                    <div class="product-name" style="font-size: 20px;">Arpods Pro</div>
+                    <div class="product-price">₦ 30,000.00</div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Arpods Pro', 30000.00)" style="font-size: 18px;"
+                            class="bg-success">🛒 Add to
+                            Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more products similarly -->
+        </div>
+
+        <!-- On Sale Section -->
+        <div class="product-category">
+            <div class="product">
+                <img src="img/canon camera.jpg" alt="Product Image">
+                <div class="product-details">
+                    <div class="product-name" style="font-size: 20px;">Canon Camera</div>
+                    <div class="product-price">₦ 350,000.00</div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Canon Camera', 350000.00)" style="font-size: 18px;"
+                            class="bg-success">🛒 Add to
+                            Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more products similarly -->
+        </div>
+
+        <!-- Top Rated Section -->
+        <div class="product-category">
+            <div class="product">
+                <img src="img/airpods max.jpg" alt="Product Image">
+                <div class="product-details">
+                    <div class="product-name" style="font-size: 20px;">Airpods Max</div>
+                    <div class="product-price">₦280,000.00</div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Airpods Max', 280000.00)" style="font-size: 18px;"
+                            class="bg-success">🛒 Add to
+                            Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more products similarly -->
+        </div>
+    </div>
+
+    <div class="products-container">
+        <!-- New Arrival Section -->
+        <div class="product-category">
+            <div class="product">
+                <img src="img/speaker.jpeg" alt="Product Image">
+                <div class="product-details">
+                    <div class="product-name" style="font-size: 20px;">JBL Speaker</div>
+                    <div class="product-price">₦165,000.00</div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('JBL Speaker', 165000.00)" style="font-size: 18px;"
+                            class="bg-success">🛒 Add to
+                            Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more products similarly -->
+        </div>
+
+        <!-- On Sale Section -->
+        <div class="product-category">
+            <div class="product">
+                <img src="img/lamp.jpeg" alt="Product Image">
+                <div class="product-details">
+                    <div class="product-name" style="font-size: 20px;">Reading Light</div>
+                    <div class="product-price">₦5,000.00</div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Reading Light', 5000.00)" style="font-size: 18px;"
+                            class="bg-success">🛒 Add to
+                            Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more products similarly -->
+        </div>
+
+        <!-- Top Rated Section -->
+        <div class="product-category">
+            <div class="product">
+                <img src="img/heater.jpeg" alt="Product Image">
+                <div class="product-details">
+                    <div class="product-name" style="font-size: 20px;">Electric Heater</div>
+                    <div class="product-price">₦35,000.00</div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Electric Heater', 35000.00)" style="font-size: 18px;"
+                            class="bg-success">🛒 Add to
+                            Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more products similarly -->
+        </div>
+    </div>
+
+    <div class="products-container">
+        <!-- New Arrival Section -->
+        <div class="product-category">
+            <div class="product">
+                <img src="img/kettle.jpeg" alt="Product Image">
+                <div class="product-details">
+                    <div class="product-name" style="font-size: 20px;">Electric Kettle</div>
+                    <div class="product-price">₦ 13,000.00</div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Electric Kettle', 13000.00)" style="font-size: 18px;"
+                            class="bg-success">🛒 Add to
+                            Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more products similarly -->
+        </div>
+
+        <!-- On Sale Section -->
+        <div class="product-category">
+            <div class="product">
+                <img src="img/projector.jpeg" alt="Product Image">
+                <div class="product-details">
+                    <div class="product-name" style="font-size: 20px;">Acer Projector</div>
+                    <div class="product-price">₦ 18,000.00</div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Acer Projector', 18000.00)" style="font-size: 18px;"
+                            class="bg-success">🛒 Add to
+                            Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more products similarly -->
+        </div>
+
+        <!-- Top Rated Section -->
+        <div class="product-category">
+            <div class="product">
+                <img src="img/photocopy.jpeg" alt="Product Image">
+                <div class="product-details">
+                    <div class="product-name" style="font-size: 20px;">B/W Photocopy Machine</div>
+                    <div class="product-price">₦ 33,600.00</div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('B/W Photocopy Machine', 33600.00)" style="font-size: 18px;"
+                            class="bg-success">🛒 Add to
+                            Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more products similarly -->
+        </div>
+    </div>
+
+    <div class="products-container">
+        <!-- New Arrival Section -->
+        <div class="product-category">
+            <div class="product">
+                <img src="img/apple watch.jpeg" alt="Product Image">
+                <div class="product-details">
+                    <div class="product-name" style="font-size: 20px;">Apple Watch Sries 8</div>
+                    <div class="product-price">₦ 25,000.00</div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Apple Watch Sries 8', 25000.00)" style="font-size: 18px;"
+                            class="bg-success">🛒 Add to
+                            Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more products similarly -->
+        </div>
+
+        <!-- On Sale Section -->
+        <div class="product-category">
+            <div class="product">
+                <img src="img/fan.webp" alt="Product Image">
+                <div class="product-details">
+                    <div class="product-name" style="font-size: 20px;">2-in-1 Convertible Electric Fan</div>
+                    <div class="product-price">₦ 23,000.00</div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('2-in-1 Convertible Electric Fan', 23000.00)"
+                            style="font-size: 18px;" class="bg-success">🛒 Add to
+                            Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more products similarly -->
+        </div>
+
+        <!-- Top Rated Section -->
+        <div class="product-category">
+            <div class="product">
+                <img src="img/samsung buds.jpeg" alt="Product Image">
+                <div class="product-details">
+                    <div class="product-name" style="font-size: 20px;">Samsung Galaxy Buds</div>
+                    <div class="product-price">₦ 30,000.00</div>
+                    <div class="product-actions">
+                        <button onclick="addToCart('Product 15', 30000.00)" style="font-size: 18px; "
+                            class="bg-success">🛒 Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more products similarly -->
+        </div>
+    </div>
+    <div style="background: url(img/footer.jpg);background-repeat: no-repeat; background-size: cover;
+                background-position: center;border-top-left-radius: 50px; border-top-right-radius: 50px;"><br>
+        <h1 style="text-align: center; color: white; font-weight: bolder;">GB Express: Where every click brings you
+            closer to great deals, unmatched quality, and a shopping experience you’ll love.</h1>
+
+        <div class="col-md-6 col-lg-4 col-xs-6">
+            <h1 style=" color: rgb(64, 231, 8);"><b style="font-size:60px;"><img src="img/logo.svg" width="50px"
+                        height="50px" alt=""><b>GB Express</b>
+            </h1>
+            <p style="font-size: 16px;  color: #ffffff;">
+                <b>At CDE Aroma Brew, we are a dedicated team of coffee enthusiasts, passionate about delivering
+                    exceptional quality and flavor. Our skilled roasters and experienced professionals ensure every cup
+                    offers a perfect blend of taste and aroma, consistently exceeding expectations.</b>
+            </p>
+            <a href="https://twitter.com/Bozz__KD"><img data-toggle="tooltip" data-placement="bottom"
+                    title="Our Twitter Handle" style="margin-left: 20px;" src="img/twitter-x.svg" width="30px"
+                    height="30px" alt=""></a>
+            <a href="https://www.instagram.com/chimsdee/"><img data-toggle="tooltip" data-placement="bottom"
+                    title="Our Instagram Handle" style="margin-left: 20px;" src="img/instagram.svg" width="30px"
+                    height="30px" alt=""></a>
+            <a href="https://www.linkedin.com/in/chimsom-elue-338bba2a9/"><img data-toggle="tooltip"
+                    data-placement="bottom" title="Our Linkedin Handle" style="margin-left: 20px;"
+                    src="img/linkedin.svg" width="30px" height="30px" alt=""></a>
+        </div>
+
+
+        <div class="col-md-6 col-lg-4 col-xs-6">
+            <h6 style="font-size: 30px; color:white;"><b>Contact Info</b></h6>
+            <p style="font-size: 16px; color: #ffffff; font-weight: bolder;">Address :1 Aguiyi Ironsi Street Maitama,
+                Abuja, Federal
+                Capital Territory</p>
+            <p style="font-size: 16px; color: #ffffff; font-weight: bolder;" class="mt-2">Phone : <a
+                    style="color: #ffffff;" href="tel:+1(21) 234 4567">+1(21) 234 4567</a></p>
+            <p style="font-size: 16px; color: #ffffff; font-weight: bolder;" class="mt-2">Email : <a
+                    style="color: #ffffff;" href="chimsom09@gmail.com">chimsom09@gmail.com</a></p>
+
+        </div>
+
+        <div class="col-md-6 col-lg-4 col-xs-6">
+
+            <style>
+                .map:hover {
+                    filter: brightness(90%);
+
+                }
+            </style>
+            <iframe class="map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.8845049634015!2d7.490109980002446!3d9.074285367754271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104dd42594163dd1%3A0x2b97d2308e5f8ee1!2sTranscorp%20Hilton%20Abuja!5e0!3m2!1sen!2sng!4v1714819059748!5m2!1sen!2sng"
+                width="450" height="250"
+                style="border:0; position: relative; bottom: -5px; border-radius: 10% 50% 10% 50% / 50% 10% 50% 10%;"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        </div>
+
+        <hr width="100%">
+        <p style="text-align: center; color: white; font-size: 20px;"><b>© 2022 <span><b>CDE Decor</b></span>. All
+                rights reserved.
+                Design by
+                cdeenterprise</b></p>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function addToCart(name, price) {
+            const item = { name, price };
+            cart.push(item);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            document.getElementById('cart-count').innerText = cart.length;
+
+        }
+
+        document.getElementById('cart-count').innerText = cart.length;
+    </script>
+
+
+
+
+
+    <script src="JS/swiper-bundle.min.js"></script>
+    <script src="JS/main3.js"></script>
+
+    <script src="AOS (Animate On Scroll)/aos.js"></script>
+    <script src="AOS (Animate On Scroll)/main2.js"></script>
+</body>
+
+</html>

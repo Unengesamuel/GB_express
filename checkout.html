@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="website icon" type="png" href="img/cart-checkout.svg">
+    <link rel="stylesheet" href="CSS/bootsrap3.3.5.mini.css">
+    <link rel="stylesheet" href="AOS (Animate On Scroll)/aos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body{
+        background-color: #ccc;
+    }
+    .btn-colorful {
+        border: none;
+        width: 120px;
+        padding: 10px;
+        outline: none;
+        color:
+            rgb(0, 0, 0);
+        font-style: 1.2em;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+        background: none;
+        text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.45);
+    }
+
+    .btn-colorful:before,
+    .btn-colorful:after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 10em;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        width: 105%;
+        height: 105%;
+        content: "";
+        z-index: -2;
+        background-size: 400% 400%;
+        background: linear-gradient(150deg,
+                rgb(64, 231, 8),
+                rgb(6, 5, 5));
+    }
+
+    .btn-colorful:before {
+        -webkit-filter: blur(7px);
+        filter: blur(7px);
+        -webkit-transition: all 0.25s ease;
+        transition: all 0.25s ease;
+        -webkit-animation: pulse 10s infinite ease;
+        animation: pulse 10s infinite ease;
+    }
+
+    .btn-colorful:after {
+        -webkit-filter: blur(0.3px);
+        filter: blur(0.3px);
+    }
+
+    .btn-colorful:hover:before {
+        width: 115%;
+        height: 115%;
+    }
+
+
+    .navbar2 a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        padding: 15px 20px;
+        transition: 0.7s;
+    }
+
+    li a:hover:not(.active) {
+        -webkit-text-fill-color: rgb(64, 231, 8);
+        ;
+    }
+
+    /* Simple hover effect */
+    .navbar2 a::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 3px;
+        border-radius: 50px;
+        background: rgb(64, 231, 8);
+        ;
+        transition: width .7s;
+    }
+
+    .navbar2 a:hover::after {
+        width: 100%;
+        transition: width .7s;
+    }
+
+    .a {
+        color: inherit !important;
+        /* Inherits the parent element's color */
+        text-decoration: none !important;
+        /* Removes the underline */
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .cart-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        padding: 10px;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+    }
+
+    .cart-item h3 {
+        margin: 0;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .cart-item p {
+        margin: 0;
+        font-size: 16px;
+        font-weight: bold;
+        color: #000;
+    }
+
+    .total {
+        font-size: 18px;
+        font-weight: bold;
+        text-align: right;
+        margin-top: 20px;
+    }
+
+    .confirm-btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #5cb85c;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        text-align: center;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+    .confirm-btn:hover {
+        background-color: #4cae4c;
+    }
+</style>
+
+<nav class="nav navbar-inverse navbar-fixed-top"
+    style="padding: 20px; background: linear-gradient(to bottom,rgba(0, 0, 0, 0.62),rgba(0, 0, 0, 0.62),rgba(0, 0, 0, 0.62),rgba(0, 0, 0, 0.62),rgb(64, 231, 8));">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" style="color:rgb(64, 231, 8); font-size: 50px;" href="#"><b> <img src="img/logo.svg"
+                        width="
+        50px" height="50px" alt=""><b style="font-size:60px;"><b>GB Express</b></a>
+        </div>
+
+
+        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar2">
+                <li><a href="home.html" style="color: #ffffff; font-size:20px;"><b>Home</b><span
+                            class="sr-only">(current)</span></a></li>
+                <li><a href="about.html" style="color:  #ffffff; font-size:20px;"><b>About</b></a>
+                <li><a class="active" href="shop.html" style="color:rgb(64, 231, 8); font-size:20px;"><b>Shop</b></a>
+
+                    <!-- <div id="theme-toggle">
+                <img id="theme-button" src="IMG/mdi--theme-light-dark.svg" alt="Theme Icon">
+            </div> -->
+                </li>
+            </ul>
+            </ul>
+        </div>
+    </div>
+
+
+</nav>
+
+
+<div class="container" style="margin-top: 100px;">
+    <h2>Checkout</h2>
+    <div id="cart-items"></div>
+    <div class="total">Total:₦<span id="total-price">0.00</span></div>
+    <button class="confirm-btn" onclick="confirmPurchase()">Confirm Purchase</button>
+</div>
+
+<script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function displayCart() {
+        const cartItems = document.getElementById('cart-items');
+        cartItems.innerHTML = '';
+        let total = 0;
+        cart.forEach(item => {
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('cart-item');
+            itemElement.innerHTML = `
+                <h3>${item.name}</h3>
+                <p>₦${item.price.toFixed(2)}</p>
+            `;
+            cartItems.appendChild(itemElement);
+            total += item.price;
+        });
+        document.getElementById('total-price').innerText = total.toFixed(2);
+    }
+
+    function confirmPurchase() {
+        alert('Purchase Confirmed!');
+        localStorage.removeItem('cart');
+        window.location.href = 'shop.html';
+    }
+
+    displayCart();
+</script>
+
+
+<div style="background: url(img/footer.jpg);background-repeat: no-repeat; background-size: cover;
+                background-position: center;border-top-left-radius: 50px; border-top-right-radius: 50px;"><br>
+    <h1 style="text-align: center; color: white; font-weight: bolder;">GB Express: Where every click brings you
+        closer to great deals, unmatched quality, and a shopping experience you’ll love.</h1>
+
+    <div class="col-md-6 col-lg-4 col-xs-6">
+        <h1 style=" color: rgb(64, 231, 8);"><b style="font-size:60px;"><img src="img/logo.svg" width="50px"
+                    height="50px" alt=""><b>GB Express</b>
+        </h1>
+        <p style="font-size: 16px;  color: #ffffff;">
+            <b>At CDE Aroma Brew, we are a dedicated team of coffee enthusiasts, passionate about delivering
+                exceptional quality and flavor. Our skilled roasters and experienced professionals ensure every cup
+                offers a perfect blend of taste and aroma, consistently exceeding expectations.</b>
+        </p>
+        <a href="https://twitter.com/Bozz__KD"><img data-toggle="tooltip" data-placement="bottom"
+                title="Our Twitter Handle" style="margin-left: 20px;" src="img/twitter-x.svg" width="30px" height="30px"
+                alt=""></a>
+        <a href="https://www.instagram.com/chimsdee/"><img data-toggle="tooltip" data-placement="bottom"
+                title="Our Instagram Handle" style="margin-left: 20px;" src="img/instagram.svg" width="30px"
+                height="30px" alt=""></a>
+        <a href="https://www.linkedin.com/in/chimsom-elue-338bba2a9/"><img data-toggle="tooltip" data-placement="bottom"
+                title="Our Linkedin Handle" style="margin-left: 20px;" src="img/linkedin.svg" width="30px" height="30px"
+                alt=""></a>
+    </div>
+
+
+    <div class="col-md-6 col-lg-4 col-xs-6">
+        <h6 style="font-size: 30px; color:white;"><b>Contact Info</b></h6>
+        <p style="font-size: 16px; color: #ffffff; font-weight: bolder;">Address :1 Aguiyi Ironsi Street Maitama,
+            Abuja, Federal
+            Capital Territory</p>
+        <p style="font-size: 16px; color: #ffffff; font-weight: bolder;" class="mt-2">Phone : <a style="color: #ffffff;"
+                href="tel:+1(21) 234 4567">+1(21) 234 4567</a></p>
+        <p style="font-size: 16px; color: #ffffff; font-weight: bolder;" class="mt-2">Email : <a style="color: #ffffff;"
+                href="chimsom09@gmail.com">chimsom09@gmail.com</a></p>
+
+    </div>
+
+    <div class="col-md-6 col-lg-4 col-xs-6">
+
+        <style>
+            .map:hover {
+                filter: brightness(90%);
+
+            }
+        </style>
+        <iframe class="map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.8845049634015!2d7.490109980002446!3d9.074285367754271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104dd42594163dd1%3A0x2b97d2308e5f8ee1!2sTranscorp%20Hilton%20Abuja!5e0!3m2!1sen!2sng!4v1714819059748!5m2!1sen!2sng"
+            width="450" height="250"
+            style="border:0; position: relative; bottom: -5px; border-radius: 10% 50% 10% 50% / 50% 10% 50% 10%;"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    </div>
+
+    <hr width="100%">
+    <p style="text-align: center; color: white; font-size: 20px;"><b>© 2022 <span><b>CDE Decor</b></span>. All
+            rights reserved.
+            Design by
+            cdeenterprise</b></p>
+</div>
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+
+<script>
+    function confirmPurchase() {
+
+        var totalPrice = parseFloat(document.getElementById('total-price').innerText) * 100;
+
+
+        var customerEmail = "gbexpress01@example.com";
+
+        var handler = PaystackPop.setup({
+            key: 'pk_test_43678281c28b1d714991bde67d4ac9569a723535',
+            email: customerEmail,
+            amount: totalPrice,
+            currency: "NGN",
+            ref: '' + Math.floor((Math.random() * 1000000000) + 1),
+            callback: function (response) {
+
+                alert('Payment successful. Reference: ' + response.reference);
+
+            },
+            onClose: function () {
+
+                alert('Transaction was not completed, window closed.');
+            }
+        });
+
+
+        handler.openIframe();
+    }
+</script>
+
+<script src="AOS (Animate On Scroll)/aos.js"></script>
+<script src="AOS (Animate On Scroll)/main2.js"></script>
+</body>
+
+</html>

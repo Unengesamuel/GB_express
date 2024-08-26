@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="website icon" type="png" href="img/home.svg">
+    <link rel="stylesheet" href="CSS/bootsrap3.3.5.mini.css">
+    <link rel="stylesheet" href="AOS (Animate On Scroll)/aos.css">
+
+    <link rel="stylesheet" href="CSS/swiper-slide.css">
+    <link rel="stylesheet" href="CSS/swiper-bundle.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body{
+        background-color: #ccc;
+    }
+    .btn-colorful {
+        border: none;
+        width: 120px;
+        padding: 10px;
+        outline: none;
+        color:
+            rgb(0, 0, 0);
+        font-style: 1.2em;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+        background: none;
+        text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.45);
+    }
+
+    .btn-colorful:before,
+    .btn-colorful:after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 10em;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        width: 105%;
+        height: 105%;
+        content: "";
+        z-index: -2;
+        background-size: 400% 400%;
+        background: linear-gradient(150deg,
+                rgb(64, 231, 8),
+                rgb(6, 5, 5));
+    }
+
+    .btn-colorful:before {
+        -webkit-filter: blur(7px);
+        filter: blur(7px);
+        -webkit-transition: all 0.25s ease;
+        transition: all 0.25s ease;
+        -webkit-animation: pulse 10s infinite ease;
+        animation: pulse 10s infinite ease;
+    }
+
+    .btn-colorful:after {
+        -webkit-filter: blur(0.3px);
+        filter: blur(0.3px);
+    }
+
+    .btn-colorful:hover:before {
+        width: 115%;
+        height: 115%;
+    }
+
+    .contain {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        position: relative;
+        top: 10px;
+
+    }
+
+    .contain2 {
+
+        justify-content: space-evenly;
+        align-items: center;
+        position: relative;
+        top: 10px;
+
+    }
+
+    .box {
+        width: 200px;
+        height: 150px;
+        background-color: rgba(255, 255, 255, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 3px hidden #000000;
+        text-align: center;
+    }
+
+    .box2 {
+        width: 200px;
+        height: 150px;
+        background-color: teal;
+        border: 3px hidden #000000;
+        text-align: center;
+        position: relative;
+        top: 100px;
+    }
+
+    .box:hover {
+        box-shadow: 0 4px 8px #333;
+    }
+
+    .bouncy-image {
+        margin-top: -60px;
+        margin-left: -30px;
+        width: 700px;
+        height: 300px;
+        animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .navbar2 a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        padding: 15px 20px;
+        transition: 0.7s;
+    }
+
+    li a:hover:not(.active) {
+        -webkit-text-fill-color: rgb(64, 231, 8);
+        ;
+    }
+
+    /* Simple hover effect */
+    .navbar2 a::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 3px;
+        border-radius: 50px;
+        background: rgb(64, 231, 8);
+        ;
+        transition: width .7s;
+    }
+
+    .navbar2 a:hover::after {
+        width: 100%;
+        transition: width .7s;
+    }
+
+    .products-container {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .product-category {
+        width: 30%;
+    }
+
+    .category-title {
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-align: center;
+        font-size: 18px;
+        color: #333;
+    }
+
+    .product {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px hidden #ddd;
+        border-radius: 5px;
+    }
+
+    .product img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        margin-right: 10px;
+    }
+
+    .product-details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .product-name {
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: #000000;
+        font-weight: bolder;
+    }
+
+    .product-price {
+        font-size: 16px;
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+    }
+
+    .product-actions {
+        display: flex;
+        gap: 10px;
+
+    }
+
+    .cards-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: 30%;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+
+    .card-content {
+        padding: 15px;
+    }
+
+    .card-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .card-meta {
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 10px;
+    }
+
+    .card-meta span {
+        margin-right: 15px;
+    }
+
+    .card-description {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .card-footer {
+        text-align: left;
+        color: #c00;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .product-card {
+        background-color: #333;
+        color: #fff;
+        padding: 50px;
+        width: 450px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .product-card h3 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: normal;
+    }
+
+    .product-card h2 {
+        margin: 10px 0;
+        font-size: 2rem;
+    }
+
+    .product-card p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .product-price {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    /* Container for the icons */
+    .product-actions {
+        margin-top: 15px;
+        margin-left: 90px;
+    }
+
+    .product-actions a {
+        display: inline-block;
+        padding: 10px;
+        margin: 0 5px;
+        border: 1px solid #fff;
+        text-decoration: none;
+        color: #fff;
+        font-size: 1rem;
+    }
+
+    /* Countdown timer */
+    .countdown-timer {
+        display: flex;
+        justify-content: space-evenly;
+        background-color: #f5f5f5;
+        color: #333;
+        padding: 10px;
+        border-radius: 8px;
+        width: 450px;
+        box-sizing: border-box;
+    }
+
+    .countdown-timer div {
+        text-align: center;
+    }
+
+    .countdown-timer span {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .countdown-timer small {
+        display: block;
+        font-size: 0.8rem;
+    }
+</style>
+
+<body>
+    <nav class="nav navbar-inverse navbar-fixed-top"
+        style="padding: 20px; background: linear-gradient(to bottom,rgba(0, 0, 0, 0.62),rgba(0, 0, 0, 0.62),rgba(0, 0, 0, 0.62),rgba(0, 0, 0, 0.62),rgb(64, 231, 8));">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" style="color:rgb(64, 231, 8); font-size: 50px;" href="#"><b> <img
+                            src="img/logo.svg" width="
+                    50px" height="50px" alt=""><b style="font-size:60px;"><b>GB Express</b></a>
+            </div>
+
+
+            <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar2">
+                    <li><a class="active" href="home.html"
+                            style="color: rgb(64, 231, 8); font-size:20px;"><b>Home</b><span
+                                class="sr-only">(current)</span></a></li>
+                    <li><a href="about.html" style="color: #ffffff; font-size:20px;"><b>About</b></a>
+                    <li><a href="shop.html" style="color: #ffffff; font-size:20px;"><b>Shop</b></a>
+
+                        <!-- <div id="theme-toggle">
+                            <img id="theme-button" src="IMG/mdi--theme-light-dark.svg" alt="Theme Icon">
+                        </div> -->
+                    </li>
+                </ul>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid
+
+        position: relative; top:-130px; -->
+    </nav>
+
+    <!-- brightness(50%);  rgba(255, 255, 255, 0)-->
+
+
+    <img style="filter: blur(3px);" src="img/pic2.jpg" width="100%" height="600px" alt="">
+    <div class="carousel-caption" style="position: absolute; top:220px;">
+        <h3><b>Best Collection</b></h3>
+        <h2 style="font-size: 60px;"><b>EXCLUSIVE GADGETS 2024</b></h2>
+        <a class="a" href="shop.html"><button class="btn-colorful btn-lg" style="color: white;"><b>Shop
+                    Now</b></button></a>
+    </div>
+    <!-- <svg style="" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+                d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+                class="shape-fill" fill="red" fill-opacity="1"></path>
+        </svg> -->
+    <!-- <h2 style="position: relative; top:-200px;">how are</h2> -->
+
+
+
+    </div>
+
+    <div class="contain">
+        <div class="box" style="background: linear-gradient(150deg,
+        rgb(64, 231, 8),
+        rgb(6, 5, 5),rgb(64, 231, 8));">
+            <img src="img/garantee.webp" alt=""><br>
+            <h4 style="color: white;"><b>Money Back Guarantee</b></h4>
+        </div>
+        <div class="box" style="background: linear-gradient(150deg,
+        rgb(64, 231, 8),
+        rgb(6, 5, 5),rgb(64, 231, 8));">
+            <img src="img/coupon.webp" alt=""><br>
+            <h4 style="color: white;"><b>Gift Coupon</b></h4>
+        </div>
+        <div class="box" style="background: linear-gradient(150deg,
+        rgb(64, 231, 8),
+        rgb(6, 5, 5),rgb(64, 231, 8));">
+            <img src="img/delivery.webp" alt=""><br>
+            <h4 style="color: white;"><b>Free Shipping</b></h4>
+        </div>
+        <div class="box" style="background: linear-gradient(150deg,
+        rgb(64, 231, 8),
+        rgb(6, 5, 5),rgb(64, 231, 8));">
+            <img src="img/support.webp" alt=""><br>
+            <h4 style="color: white;"><b>24/7 Support</b></h4>
+        </div>
+    </div> <br>
+
+
+    <div data-aos="fade-up" data-aos-offset="10" data-aos-easing="ease-in-sine" data-aos-duration="3500px">
+        <div class="products-container">
+
+            <div class="product-category">
+                <div class="category-title">NEW ARRIVAL</div>
+                <div class="product">
+                    <img src="img/airpods.jpg" alt="Product Image">
+                    <div class="product-details">
+                        <div class="product-name"><b>Airpods Pro</b></div>
+                        <div class="product-price">$200.00
+                            <p>&#9733; &#9733; &#9733; &#9734; &#9734; </p>
+                        </div>
+                        <div class="product-actions">
+                            <a href="shop.html"><button class="btn bg-success"><b style="color:black;">Shop
+                                        Now</b></button></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="product-category">
+                <div class="category-title">ON SALE</div>
+                <div class="product">
+                    <img src="img/iron.jpg" alt="Product Image">
+                    <div class="product-details">
+                        <div class="product-name"><b>Electric Iron</b></div>
+                        <div class="product-price">$150.00
+                            <p>&#9733; &#9733; &#9733; &#9733; &#9734; </p>
+                        </div>
+                        <div class="product-actions">
+                            <a href="shop.html"><button class="btn bg-success"><b style="color:black;">Shop
+                                        Now</b></button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-category">
+                <div class="category-title">TOP RATED</div>
+                <div class="product">
+                    <img src="img/mac monitor.jpg" alt="Product Image">
+                    <div class="product-details">
+                        <div class="product-name"><b>Macbook PC</b></div>
+                        <div class="product-price">$2,000.00
+                            <p>&#9733; &#9733; &#9733; &#9733; &#9733; </p>
+                        </div>
+                        <div class="product-actions">
+                            <a href="shop.html"><button class="btn bg-success"><b style="color:black;">Shop
+                                        Now</b></button></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="products-container">
+
+            <div class="product-category">
+                <div class="product">
+                    <img src="img/canon camera.jpg" alt="Product Image">
+                    <div class="product-details">
+                        <div class="product-name"><b>Canon Camera</b></div>
+                        <div class="product-price">$450.00
+                            <p>&#9733; &#9733; &#9733; &#9733; &#9733; </p>
+                        </div>
+                        <div class="product-actions">
+                            <a href="shop.html"><button class="btn bg-success"><b style="color:black;">Shop
+                                        Now</b></button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-category">
+                <div class="product">
+                    <img src="img/airpods max.jpg" alt="Product Image">
+                    <div class="product-details">
+                        <div class="product-name"><b>Airpods Max</b></div>
+                        <div class="product-price">$310.00
+                            <p>&#9733; &#9733; &#9733; &#9734; &#9734; </p>
+                        </div>
+                        <div class="product-actions">
+                            <a href="shop.html"><button class="btn bg-success"><b style="color:black;">Shop
+                                        Now</b></button></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="product-category">
+                <div class="product">
+                    <img src="img/iphone 12.jpg" alt="Product Image">
+                    <div class="product-details">
+                        <div class="product-name"><b>Iphone 15 Pro</b></div>
+                        <div class="product-price">$1,500.00
+                            <p>&#9733; &#9733; &#9733; &#9733; &#9734; </p>
+                        </div>
+                        <div class="product-actions">
+                            <a href="shop.html"><button class="btn bg-success"><b style="color:black;">Shop
+                                        Now</b></button></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row" style="margin: auto;"><br><br>
+        <!-- <div class="col-lg-6 col-md-6" style="position: relative;">
+            <div class="product-card ">
+                <h2><b>Just In</b></h2>
+                <h1>Apple Vision Pro</h1>
+                <div class="product-price" style="color: #fff;">$200.00</div>
+                <h5>Apple Vision Pro offers immersive augmented reality experiences with advanced spatial computing,
+                    stunning visuals, intuitive controls, and seamless integration with everyday tasks.</h5>
+            </div>
+            <div class="countdown-timer">
+                <div>
+                    <span>14</span>
+                    <small>DAYS</small>
+                </div>
+                <div>
+                    <span>336</span>
+                    <small>HOURS</small>
+                </div>
+                <div>
+                    <span>20,160</span>
+                    <small>MINS</small>
+                </div>
+                <div>
+                    <span>1,209,600</span>
+                    <small>SECS</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-xs-12">
+            <img style="margin-left: -30px;" src="img/app.jpeg" alt="Bouncy Image" class="bouncy-image">
+        </div>
+    </div> <br> -->
+        <div class="container" style="margin-top: -90px;">
+            <div class="col-md-6" data-aos="fade-up" data-aos-offset="10" data-aos-easing="ease-in-sine"
+                data-aos-duration="3500px">
+                <img class="img-rounded center-block" style="margin-left: -50px;" src="img/app.jpeg" width="600px"
+                    height="336px" alt="">
+            </div>
+            <div class="col-md-6" data-aos="fade-left" data-aos-offset="10" data-aos-easing="ease-in-sine"
+                data-aos-duration="1500px">
+                <h1 style="font-weight: bolder; font-size: 70px;">GB Express</h1>
+                <p style="color: #707070; font-weight: bold; font-size: 15px;">We transform online shopping
+                    into a tech-savvy lifestyle. Discover a curated range of essentials and unique finds, all delivered
+                    fast to your door. With intuitive navigation, secure payments, and stellar customer service, GB
+                    Express makes modern living effortless. Your digital life, upgraded.</p>
+                <hr style="width:90%;">
+
+                <div class="row">
+                    <p style=" font-weight: bold; font-size: 15px;">Cart Value Progress</p>
+                    <div class="progress" style="height: 10px; width: 90%;">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                            aria-valuemax="100" style="width: 80%; background: linear-gradient(to right,
+                            rgb(64, 231, 8),
+                            rgb(6, 5, 5),rgb(64, 231, 8));">
+                            <span class="sr-only">80% Complete</span>
+                        </div>
+                    </div>
+                    <p style=" font-weight: bold; font-size: 15px;">Checkout Process Indicator</p>
+                    <div class="progress" style="height: 10px; width: 90%;">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                            aria-valuemax="100" style="width: 95%; background: linear-gradient(to right,
+                            rgb(64, 231, 8),
+                            rgb(6, 5, 5),rgb(64, 231, 8));">
+                            <span class="sr-only">95% Complete</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <h1 style="text-align: center;"><b>Blogs</b></h1>
+
+        <div class="cards-container" data-aos="fade-up" data-aos-offset="10" data-aos-easing="ease-in-sine"
+            data-aos-duration="3500px">
+
+            <div class="card" style="border-radius: 10% 50% 10% 50% / 50% 10% 50% 10%;">
+                <img src="img/blog1.jpeg" alt="Fashion Image 1">
+                <div class="card-content">
+                    <div class="card-title">EXCLUSIVE GADGETS 2024</div>
+                    <div class="card-meta">
+                        <span>❤️ 245 Likes</span>
+                        <span>💬 83 Comments</span>
+                        <span>📅 30 May 2023</span>
+                    </div>
+                    <div class="card-description">
+                        GB Express seamlessly blends innovation and convenience, capturing your attention with a
+                        sophisticated shopping experience that transforms the ordinary into the extraordinary.
+                    </div>
+                    <a href="404page.html" class="a"><div class="card-footer" style="text-align: center;">Read More</div></a>
+                </div>
+            </div>
+
+
+            <div class="card" style="border-radius: 10% 50% 10% 50% / 50% 10% 50% 10%;">
+                <img src="img/blog3.webp" alt="Fashion Image 2">
+                <div class="card-content">
+                    <div class="card-title">EXCLUSIVE GADGETS 2024</div>
+                    <div class="card-meta">
+                        <span>❤️ 344 Likes</span>
+                        <span>💬 300 Comments</span>
+                        <span>📅 12 April 2022</span>
+                    </div>
+                    <div class="card-description">
+                        GB Express elevates online shopping into an art form, where every detail is crafted to captivate
+                        and deliver an unparalleled experience in both style and ease.
+                    </div>
+                    <a href="404page.html" class="a"><div class="card-footer" style="text-align: center;">Read More</div></a>
+                </div>
+            </div>
+
+            <div class="card" style="border-radius: 10% 50% 10% 50% / 50% 10% 50% 10%;">
+                <img src="img/blog2.webp" alt="Fashion Image 3">
+                <div class="card-content">
+                    <div class="card-title">EXCLUSIVE GADGETS 2024</div>
+                    <div class="card-meta">
+                        <span>❤️ 103 Likes</span>
+                        <span>💬 29 Comments</span>
+                        <span>📅 22 July 2024</span>
+                    </div>
+                    <div class="card-description">
+                        GB Express redefines e-commerce with a blend of elegance and efficiency, creating a shopping
+                        journey that's as captivating as it is effortless.
+                    </div>
+                    <a href="404page.html" class="a"><div class="card-footer" style="text-align: center;">Read More</div></a>
+                </div>
+            </div>
+        </div>
+
+
+        <section id="look-for" class="py-5 mt-5">
+            <div class="">
+                <div class="d-flex justify-content-between my-4">
+                    <p class="text-secondary" style="text-align: center;">Our Sponsors</p>
+                </div>
+
+                <div class="clients-slider swiper mt-3">
+                    <div class="swiper-wrapper align-items-center">
+                        <div class="swiper-slide">
+                            <img src="img/salomon.png" class="img-fluid rounded-circle mb-3" alt="">
+                            <p class="text-center" style="font-size: 18px; margin-left: -20px;">Salomon</p>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/aon.png" class="img-fluid rounded-circle mb-3" alt="">
+                            <p class="text-center" style="font-size: 18px; margin-left: 20px;">AON</p>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/adidas.png" class="img-fluid rounded-circle mb-3" alt="">
+                            <p class="text-center" style="font-size: 18px; margin-left: -40px;">Adidas</p>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/coke.png" class="img-fluid rounded-circle mb-3" alt="">
+                            <p class="text-center" style="font-size: 18px; margin-left: -40px;">Coca-Cola</p>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/paypal.png" class="img-fluid rounded-circle mb-3" alt="">
+                            <p class="text-center" style="font-size: 18px; margin-left: -40px;">PayPal</p>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/spar.png" class="img-fluid rounded-circle mb-3" alt="">
+                            <p class="text-center" style="font-size: 18px; margin-left: -60px;">Spar</p>
+                        </div>
+                        <div class="swiper-slide">
+                            <img src="img/pepsi.png" class="img-fluid rounded-circle mb-3" alt="">
+                            <p class="text-center" style="font-size: 18px; margin-left: -40px;">Pepsi</p>
+                        </div>
+                    </div><br>
+                    <div class="swiper-pagination"></div>
+                <hr class="mt-5">
+            </div>
+        </section>
+
+        <div style="background: url(img/footer.jpg);background-repeat: no-repeat; background-size: cover;
+                background-position: center;border-top-left-radius: 50px; border-top-right-radius: 50px;"><br>
+            <h1 style="text-align: center; color: white; font-weight: bolder;">GB Express: Where every click brings you
+                closer to great deals, unmatched quality, and a shopping experience you’ll love.</h1>
+
+            <div class="col-md-6 col-lg-4 col-xs-6">
+                <h1 style=" color: rgb(64, 231, 8);"><b style="font-size:60px;"><img src="img/logo.svg" width="50px"
+                            height="50px" alt=""><b>GB Express</b>
+                </h1>
+                <p style="font-size: 16px;  color: #ffffff;">
+                    <b>At CDE Aroma Brew, we are a dedicated team of coffee enthusiasts, passionate about delivering
+                        exceptional quality and flavor. Our skilled roasters and experienced professionals ensure every
+                        cup
+                        offers a perfect blend of taste and aroma, consistently exceeding expectations.</b>
+                </p>
+                <a href="https://twitter.com/Bozz__KD"><img data-toggle="tooltip" data-placement="bottom"
+                        title="Our Twitter Handle" style="margin-left: 20px;" src="img/twitter-x.svg" width="30px"
+                        height="30px" alt=""></a>
+                <a href="https://www.instagram.com/chimsdee/"><img data-toggle="tooltip" data-placement="bottom"
+                        title="Our Instagram Handle" style="margin-left: 20px;" src="img/instagram.svg" width="30px"
+                        height="30px" alt=""></a>
+                <a href="https://www.linkedin.com/in/chimsom-elue-338bba2a9/"><img data-toggle="tooltip"
+                        data-placement="bottom" title="Our Linkedin Handle" style="margin-left: 20px;"
+                        src="img/linkedin.svg" width="30px" height="30px" alt=""></a>
+            </div>
+
+
+            <div class="col-md-6 col-lg-4 col-xs-6">
+                <h6 style="font-size: 30px; color:white;"><b>Contact Info</b></h6>
+                <p style="font-size: 16px; color: #ffffff; font-weight: bolder;">Address :1 Aguiyi Ironsi Street
+                    Maitama,
+                    Abuja, Federal
+                    Capital Territory</p>
+                <p style="font-size: 16px; color: #ffffff; font-weight: bolder;" class="mt-2">Phone : <a
+                        style="color: #ffffff;" href="tel:+1(21) 234 4567">+1(21) 234 4567</a></p>
+                <p style="font-size: 16px; color: #ffffff; font-weight: bolder;" class="mt-2">Email : <a
+                        style="color: #ffffff;" href="chimsom09@gmail.com">chimsom09@gmail.com</a></p>
+
+            </div>
+
+            <div class="col-md-6 col-lg-4 col-xs-6">
+
+                <style>
+                    .map:hover {
+                        filter: brightness(90%);
+
+                    }
+                </style>
+                <iframe class="map"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.8845049634015!2d7.490109980002446!3d9.074285367754271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104dd42594163dd1%3A0x2b97d2308e5f8ee1!2sTranscorp%20Hilton%20Abuja!5e0!3m2!1sen!2sng!4v1714819059748!5m2!1sen!2sng"
+                    width="450" height="250"
+                    style="border:0; position: relative; bottom: -5px; border-radius: 10% 50% 10% 50% / 50% 10% 50% 10%;"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+            </div>
+
+            <hr width="100%">
+            <p style="text-align: center; color: white; font-size: 20px;"><b>© 2022 <span><b>CDE Decor</b></span>. All
+                    rights reserved.
+                    Design by
+                    cdeenterprise</b></p>
+        </div>
+
+        <script src="JS/swiper-bundle.min.js"></script>
+        <script src="JS/main3.js"></script>
+        <script src="AOS (Animate On Scroll)/aos.js"></script>
+        <script src="AOS (Animate On Scroll)/main2.js"></script>
+</body>
+
+</html>

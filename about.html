@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="website icon" type="png" href="img/about.svg">
+    <link rel="stylesheet" href="CSS/bootsrap3.3.5.mini.css">
+    <link rel="stylesheet" href="AOS (Animate On Scroll)/aos.css">
+
+    <link rel="stylesheet" href="CSS/swiper-slide.css">
+    <link rel="stylesheet" href="CSS/swiper-bundle.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body {
+        background-color: #ccc;
+    }
+
+    .btn-colorful {
+        border: none;
+        width: 120px;
+        padding: 10px;
+        outline: none;
+        color:
+            rgb(0, 0, 0);
+        font-style: 1.2em;
+        position: relative;
+        z-index: 1;
+        cursor: pointer;
+        background: none;
+        text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.45);
+    }
+
+    .btn-colorful:before,
+    .btn-colorful:after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 10em;
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+        width: 105%;
+        height: 105%;
+        content: "";
+        z-index: -2;
+        background-size: 400% 400%;
+        background: linear-gradient(150deg,
+                rgb(64, 231, 8),
+                rgb(6, 5, 5));
+    }
+
+    .btn-colorful:before {
+        -webkit-filter: blur(7px);
+        filter: blur(7px);
+        -webkit-transition: all 0.25s ease;
+        transition: all 0.25s ease;
+        -webkit-animation: pulse 10s infinite ease;
+        animation: pulse 10s infinite ease;
+    }
+
+    .btn-colorful:after {
+        -webkit-filter: blur(0.3px);
+        filter: blur(0.3px);
+    }
+
+    .btn-colorful:hover:before {
+        width: 115%;
+        height: 115%;
+    }
+
+    .contain {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        position: relative;
+        top: 10px;
+
+    }
+
+    .contain2 {
+
+        justify-content: space-evenly;
+        align-items: center;
+        position: relative;
+        top: 10px;
+
+    }
+
+    .box {
+        width: 200px;
+        height: 150px;
+        background-color: rgba(255, 255, 255, 0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 3px hidden #000000;
+        text-align: center;
+    }
+
+    .box2 {
+        width: 200px;
+        height: 150px;
+        background-color: teal;
+        border: 3px hidden #000000;
+        text-align: center;
+        position: relative;
+        top: 100px;
+    }
+
+    .box:hover {
+        box-shadow: 0 4px 8px #333;
+    }
+
+    .bouncy-image {
+        margin-top: -60px;
+        margin-left: -30px;
+        width: 500px;
+        height: 500px;
+        animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .navbar2 a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        padding: 15px 20px;
+        transition: 0.7s;
+    }
+
+    li a:hover:not(.active) {
+        -webkit-text-fill-color: rgb(64, 231, 8);
+        ;
+    }
+
+    /* Simple hover effect */
+    .navbar2 a::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 3px;
+        border-radius: 50px;
+        background: rgb(64, 231, 8);
+        ;
+        transition: width .7s;
+    }
+
+    .navbar2 a:hover::after {
+        width: 100%;
+        transition: width .7s;
+    }
+
+    .products-container {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .product-category {
+        width: 30%;
+    }
+
+    .category-title {
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-align: center;
+        font-size: 18px;
+        color: #333;
+    }
+
+    .product {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px hidden #ddd;
+        border-radius: 5px;
+    }
+
+    .product img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        margin-right: 10px;
+    }
+
+    .product-details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .product-name {
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: #000000;
+        font-weight: bolder;
+    }
+
+    .product-price {
+        font-size: 16px;
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 10px;
+    }
+
+    .product-actions {
+        display: flex;
+        gap: 10px;
+
+    }
+
+    .cards-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        /* border-top-left-radius: 50px;
+        border-top-right-radius: 50px; */
+        border-radius: 50% 10% 50% 10% / 10% 50% 10% 50%;
+        width: 30%;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+
+    .card-content {
+        padding: 15px;
+    }
+
+    .card-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .card-meta {
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 10px;
+    }
+
+    .card-meta span {
+        margin-right: 15px;
+    }
+
+    .card-description {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .card-footer {
+        text-align: left;
+        color: #c00;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .product-card {
+        background-color: #333;
+        color: #fff;
+        padding: 50px;
+        width: 450px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .product-card h3 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: normal;
+    }
+
+    .product-card h2 {
+        margin: 10px 0;
+        font-size: 2rem;
+    }
+
+    .product-card p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .product-price {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    /* Container for the icons */
+    .product-actions {
+        margin-top: 15px;
+        margin-left: 90px;
+    }
+
+    .product-actions a {
+        display: inline-block;
+        padding: 10px;
+        margin: 0 5px;
+        border: 1px solid #fff;
+        text-decoration: none;
+        color: #fff;
+        font-size: 1rem;
+    }
+
+    /* Countdown timer */
+    .countdown-timer {
+        display: flex;
+        justify-content: space-evenly;
+        background-color: #f5f5f5;
+        color: #333;
+        padding: 10px;
+        border-radius: 8px;
+        width: 450px;
+        box-sizing: border-box;
+    }
+
+    .countdown-timer div {
+        text-align: center;
+    }
+
+    .countdown-timer span {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .countdown-timer small {
+        display: block;
+        font-size: 0.8rem;
+    }
+
+    .cap:hover {
+        color: rgb(64, 231, 8);
+        transition: ease-in 0.3s;
+    }
+
+    .a {
+        color: inherit !important;
+        /* Inherits the parent element's color */
+        text-decoration: none !important;
+        /* Removes the underline */
+    }
+
+    .container3 {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+
+        margin: 0 auto;
+    }
+
+    .profile-card {
+        position: relative;
+        width: 300px;
+        height: 500px;
+        overflow: hidden;
+        border-radius: 8px;
+    }
+
+    .profile-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .profile-card:hover img {
+        transform: scale(1.1);
+    }
+
+    .profile-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        text-align: center;
+        padding: 10px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .profile-card:hover .profile-info {
+        opacity: 1;
+    }
+
+    .profile-info h3 {
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    .profile-info p {
+        margin: 5px 0 0;
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <nav class="nav navbar-inverse navbar-fixed-top"
+        style="padding: 20px; background: linear-gradient(to bottom,rgba(0, 0, 0, 0.62),rgba(0, 0, 0, 0.62),rgba(0, 0, 0, 0.62),rgba(0, 0, 0, 0.62),rgb(64, 231, 8));">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" style="color:rgb(64, 231, 8); font-size: 50px;" href="#"><b> <img
+                            src="img/logo.svg" width="
+                50px" height="50px" alt=""><b style="font-size:60px;"><b>GB Express</b></a>
+            </div>
+
+
+            <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar2">
+                    <li><a href="home.html" style="color: #ffffff; font-size:20px;"><b>Home</b><span
+                                class="sr-only">(current)</span></a></li>
+                    <li><a class="active" href="about.html"
+                            style="color: rgb(64, 231, 8); font-size:20px;"><b>About</b></a>
+                    <li><a href="shop.html" style="color: #ffffff; font-size:20px;"><b>Shop</b></a>
+
+                        <!-- <div id="theme-toggle">
+                        <img id="theme-button" src="IMG/mdi--theme-light-dark.svg" alt="Theme Icon">
+                    </div> -->
+                    </li>
+                </ul>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid
+
+    position: relative; top:-130px; -->
+    </nav>
+    <div>
+        <img style="filter: blur(3px);" src="img/pic3.jpeg" width="100%" height="450px" alt="">
+        <div class="carousel-caption" style="margin-bottom: 300px;">
+            <h1><b style="color:#ffffff; font-size: 50px;">About Us</b></h1>
+            <h4><b class="cap"><a class="a" href="home.html">Home</a></b> » About</h4>
+        </div>
+    </div>
+
+    <div class="row" style=" color: rgb(11, 11, 11); margin: 30px;">
+        <div class="col-md-6 col-lg-6">
+            <img src="img/about.webp" width="500px" height="300px" alt="" class="img-rounded">
+        </div>
+        <div class="col-md-6">
+            <h3 style="font-weight: bolder;">Your Destination For Quality And Convenience. 👍🏾👍🏾</h3>
+            <p style="color: #707070; font-size: 20px;">GB Express is an e-commerce store that redefines
+                convenience
+                and quality. It offers a wide range of products, from everyday essentials to unique finds, all
+                delivered right to your door. With user-friendly navigation, secure transactions, and
+                exceptional
+                customer service, GB Express ensures a seamless shopping experience. Whether you're looking for
+                the
+                latest trends or reliable basics, GB Express is your go-to destination for online shopping.</p>
+            <a href="shop.html"><button class="btn-colorful btn-lg"
+                    style="color: white; position: relative; top: -30px;"><b>Shop
+                        Now</b></button></a>
+        </div><br><br>
+
+        <h1 style="text-align: center;"><b>How We Work?</b></h1>
+
+        <div class="cards-container" data-aos="fade-up" data-aos-offset="10" data-aos-easing="ease-in-sine"
+            data-aos-duration="3500px">
+
+            <div class="card">
+                <img style="border-top-left-radius: 50px; border-top-right-radius: 50px;" src="img/work1.jpg"
+                    alt="Fashion Image 1">
+                <div class="card-content">
+                    <div class="card-title">Product Listing</div>
+                    <div class="card-description">
+                        <h4>Sellers upload product information, including descriptions, prices, and images, to the
+                            online
+                            store.</h4>
+                    </div>
+                    <div class="card-footer">
+                        <a href="404page.html" class="a"><button class="btn-colorful btn-lg center-block"
+                                style="color: rgb(255, 255, 255);"><b>Read
+                                    More</b>
+                            </button></a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <img style="border-top-left-radius: 50px; border-top-right-radius: 50px;" src="img/work2.webp"
+                    alt="Fashion Image 2">
+                <div class="card-content">
+                    <div class="card-title">Customer Browsing and Purchase</div>
+                    <div class="card-description">
+                        <h4>Customers browse the site, select items, and complete the purchase through a secure checkout
+                            process.</h4>
+                    </div>
+                    <div class="card-footer">
+                        <a href="404page.html" class="a"><button class="btn-colorful btn-lg center-block"
+                                style="color: rgb(255, 255, 255);"><b>Read
+                                    More</b>
+                            </button></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img style="border-top-left-radius: 50px; border-top-right-radius: 50px;" src="img/work3.jpeg"
+                    alt="Fashion Image 3">
+                <div class="card-content">
+                    <div class="card-title">Order Fulfillment</div>
+                    <div class="card-description">
+                        <h4>The store processes the order, packages the products, and ships them to the customer. </h4>
+                    </div>
+                    <div class="card-footer">
+                        <a href="404page.html" class="a"><button class="btn-colorful btn-lg center-block"
+                                style="color: rgb(255, 255, 255);"><b>Read
+                                    More</b>
+                            </button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-3">
+            <img style="text-align: center; width: 240px;" src="img/online.svg" height="50px" alt="">
+            <div class="countDisplay" id="counter1" style="margin-left: 50px;">24/7</div>
+            <span>
+                <h4 class="center-block"
+                    style="text-align: center; margin-left: -100px; font-weight: bolder; color: #707070;">
+                    Online Support</h4>
+            </span>
+        </div>
+        <div class="col-xs-12 col-md-3 col-lg-3">
+            <img style="text-align: center; width: 240px;" src="img/payments.svg" height="50px" alt="">
+            <div class="countDisplay" id="counter2" style="margin-left: 50px;">2,456</div>
+            <span>
+                <h4 class="center-block"
+                    style="text-align: center; margin-left: -100px; font-weight: bolder; color: #707070;">
+                    Finished Payments</h4>
+            </span>
+        </div>
+        <div class="col-xs-12 col-md-3 col-lg-3">
+            <img style="text-align: center; width: 240px;" src="img/work.svg" height="50px" alt="">
+            <div class="countDisplay" id="counter3" style="margin-left: 50px;">24/7</div>
+            <span>
+                <h4 class="center-block"
+                    style="text-align: center; margin-left: -100px; font-weight: bolder; color: #707070;">
+                    Working Hours</h4>
+            </span>
+        </div>
+        <div class="col-xs-12 col-md-3 col-lg-3">
+            <img style="text-align: center; width: 240px;" src="img/happy.svg" height="50px" alt="">
+            <div class="countDisplay" id="counter4" style="margin-left: 50px;">1,498</div>
+            <span>
+                <h4 class="center-block"
+                    style="text-align: center; margin-left: -100px; font-weight: bolder; color: #707070;">
+                    Happy Customers</h4>
+            </span>
+        </div><br>
+
+        <h1 style="font-size: 70px; text-align: center;"><b>Meet Our Team</b></h1>
+        <div class="container3">
+            <div class="profile-card">
+                <img src="img/staff1.jpeg" alt="Person 1">
+                <div class="profile-info">
+                    <h1>John Doe</h1>
+                    <p>Technician</p>
+                </div>
+            </div>
+            <div class="profile-card">
+                <img src="img/chimsom.jpg" alt="Person 2">
+                <div class="profile-info">
+                    <h1>Chimsom Elue</h1>
+                    <p>Front-End Developer</p>
+                </div>
+            </div>
+            <div class="profile-card">
+                <img src="img/staff3.webp" alt="Person 3">
+                <div class="profile-info">
+                    <h1>Smith Row</h1>
+                    <p>Web Developer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="look-for" class="py-5 mt-5">
+        <div class="">
+            <div class="d-flex justify-content-between my-4">
+                <p class="text-secondary" style="text-align: center;">Our Sponsors</p>
+            </div>
+
+            <div class="clients-slider swiper mt-3">
+                <div class="swiper-wrapper align-items-center">
+                    <div class="swiper-slide">
+                        <img src="img/salomon.png" class="img-fluid rounded-circle mb-3" alt="">
+                        <p class="text-center" style="font-size: 18px; margin-left: -20px;">Salomon</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/aon.png" class="img-fluid rounded-circle mb-3" alt="">
+                        <p class="text-center" style="font-size: 18px; margin-left: 20px;">AON</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/adidas.png" class="img-fluid rounded-circle mb-3" alt="">
+                        <p class="text-center" style="font-size: 18px; margin-left: -40px;">Adidas</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/coke.png" class="img-fluid rounded-circle mb-3" alt="">
+                        <p class="text-center" style="font-size: 18px; margin-left: -40px;">Coca-Cola</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/paypal.png" class="img-fluid rounded-circle mb-3" alt="">
+                        <p class="text-center" style="font-size: 18px; margin-left: -40px;">PayPal</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/spar.png" class="img-fluid rounded-circle mb-3" alt="">
+                        <p class="text-center" style="font-size: 18px; margin-left: -60px;">Spar</p>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="img/pepsi.png" class="img-fluid rounded-circle mb-3" alt="">
+                        <p class="text-center" style="font-size: 18px; margin-left: -40px;">Pepsi</p>
+                    </div>
+                </div><br>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <hr class="mt-5">
+        </div>
+    </section>
+
+
+    <div style="background: url(img/footer.jpg);background-repeat: no-repeat; background-size: cover;
+                background-position: center;border-top-left-radius: 50px; border-top-right-radius: 50px;"><br>
+        <h1 style="text-align: center; color: white; font-weight: bolder;">GB Express: Where every click brings you
+            closer to great deals, unmatched quality, and a shopping experience you’ll love.</h1>
+
+        <div class="col-md-6 col-lg-4 col-xs-6">
+            <h1 style=" color: rgb(64, 231, 8);"><b style="font-size:60px;"><img src="img/logo.svg" width="50px"
+                        height="50px" alt=""><b>GB Express</b>
+            </h1>
+            <p style="font-size: 16px;  color: #ffffff;">
+                <b>At CDE Aroma Brew, we are a dedicated team of coffee enthusiasts, passionate about delivering
+                    exceptional quality and flavor. Our skilled roasters and experienced professionals ensure every cup
+                    offers a perfect blend of taste and aroma, consistently exceeding expectations.</b>
+            </p>
+            <a href="https://twitter.com/Bozz__KD"><img data-toggle="tooltip" data-placement="bottom"
+                    title="Our Twitter Handle" style="margin-left: 20px;" src="img/twitter-x.svg" width="30px"
+                    height="30px" alt=""></a>
+            <a href="https://www.instagram.com/chimsdee/"><img data-toggle="tooltip" data-placement="bottom"
+                    title="Our Instagram Handle" style="margin-left: 20px;" src="img/instagram.svg" width="30px"
+                    height="30px" alt=""></a>
+            <a href="https://www.linkedin.com/in/chimsom-elue-338bba2a9/"><img data-toggle="tooltip"
+                    data-placement="bottom" title="Our Linkedin Handle" style="margin-left: 20px;"
+                    src="img/linkedin.svg" width="30px" height="30px" alt=""></a>
+        </div>
+
+
+        <div class="col-md-6 col-lg-4 col-xs-6">
+            <h6 style="font-size: 30px; color:white;"><b>Contact Info</b></h6>
+            <p style="font-size: 16px; color: #ffffff; font-weight: bolder;">Address :1 Aguiyi Ironsi Street Maitama,
+                Abuja, Federal
+                Capital Territory</p>
+            <p style="font-size: 16px; color: #ffffff; font-weight: bolder;" class="mt-2">Phone : <a
+                    style="color: #ffffff;" href="tel:+1(21) 234 4567">+1(21) 234 4567</a></p>
+            <p style="font-size: 16px; color: #ffffff; font-weight: bolder;" class="mt-2">Email : <a
+                    style="color: #ffffff;" href="chimsom09@gmail.com">chimsom09@gmail.com</a></p>
+
+        </div>
+
+        <div class="col-md-6 col-lg-4 col-xs-6">
+
+            <style>
+                .map:hover {
+                    filter: brightness(90%);
+
+                }
+            </style>
+            <iframe class="map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.8845049634015!2d7.490109980002446!3d9.074285367754271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104dd42594163dd1%3A0x2b97d2308e5f8ee1!2sTranscorp%20Hilton%20Abuja!5e0!3m2!1sen!2sng!4v1714819059748!5m2!1sen!2sng"
+                width="450" height="250"
+                style="border:0; position: relative; bottom: -5px; border-radius: 10% 50% 10% 50% / 50% 10% 50% 10%;"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        </div>
+
+        <hr width="100%">
+        <p style="text-align: center; color: white; font-size: 20px;"><b>© 2022 <span><b>CDE Decor</b></span>. All
+                rights reserved.
+                Design by
+                cdeenterprise</b></p>
+    </div>
+
+    <script src="JS/swiper-bundle.min.js"></script>
+    <script src="JS/main3.js"></script>
+
+    <script src="AOS (Animate On Scroll)/aos.js"></script>
+    <script src="AOS (Animate On Scroll)/main2.js"></script>
+</body>
+
+</html>
